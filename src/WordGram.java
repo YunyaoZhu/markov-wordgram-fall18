@@ -1,7 +1,7 @@
 /**
  * WordGram objects represent a k-gram of strings/words.
  * 
- * @author YOUR-NAME
+ * @author Yunyao Zhu
  *
  */
 
@@ -20,6 +20,13 @@ public class WordGram {
 	public WordGram(String[] source, int start, int size) {
 		myWords = new String[size];
 		// TODO: initialize myWords and ...
+		for(int i = 0; i < myWords.length; i ++)
+		{
+			myWords[i] = source[start + i];
+		}
+		
+		myToString = null;
+		myHash = 0;
 	}
 
 	/**
@@ -40,7 +47,7 @@ public class WordGram {
 	 */
 	public int length(){
 		// TODO: change this
-		return 0;
+		return myWords.length;
 	}
 
 
@@ -51,12 +58,20 @@ public class WordGram {
 		}
 
 	    // TODO: complete this method
-		return true;
+		WordGram wg = (WordGram) o;
+		
+		if(this.toString().equals(o.toString()) && this.hashCode() == o.hashCode())
+		{
+			return true;
+		}
+		return false;
+		
 	}
 
 	@Override
 	public int hashCode(){
 		// TODO: complete this method
+		myHash = toString().hashCode();
 		return myHash;
 	}
 	
@@ -69,12 +84,20 @@ public class WordGram {
 	public WordGram shiftAdd(String last) {
 		WordGram wg = new WordGram(myWords,0,myWords.length);
 		// TODO: Complete this method
+		
+		for(int i = 0; i < this.myWords.length-1; i++)
+		{
+			wg.myWords[i] = this.myWords[i+1];
+		}
+		
+		wg.myWords[this.myWords.length-1] = last;
 		return wg;
 	}
 
 	@Override
 	public String toString(){
 		// TODO: Complete this method	
+		myToString = String.join(" ", myWords);
 		return myToString;
 	}
 }
