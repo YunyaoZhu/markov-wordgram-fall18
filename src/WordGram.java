@@ -12,10 +12,10 @@ public class WordGram {
 	private int myHash;         // cached hash value
 
 	/**
-	 * Create WordGram (add comments)
-	 * @param source
-	 * @param start
-	 * @param size
+	 * Create WordGram object by initializing myWords, myToString, myHash 
+	 * @param source the array of words from which myWords array receives String entries
+	 * @param start the starting index where the myWords array starts to receive words from the source array
+	 * @param size the length of the myWords array
 	 */
 	public WordGram(String[] source, int start, int size) {
 		myWords = new String[size];
@@ -42,8 +42,8 @@ public class WordGram {
 	}
 
 	/**
-	 * Complete this comment
-	 * @return
+	 * This method returns the length of the myWords array
+	 * @return the length of the myWord array
 	 */
 	public int length(){
 		// TODO: change this
@@ -77,9 +77,10 @@ public class WordGram {
 	
 
 	/**
-	 * Create and complete this comment
-	 * @param last is last String of returned WordGram
-	 * @return
+	 * The method create a new object by shifting the words in myWords array in the old 
+	 * object down by one and append the last string to the end of the array
+	 * @param last the String to be added to the end of the myWords array of the new object
+	 * @return the new object with last as the last string in the myWords array
 	 */
 	public WordGram shiftAdd(String last) {
 		WordGram wg = new WordGram(myWords,0,myWords.length);

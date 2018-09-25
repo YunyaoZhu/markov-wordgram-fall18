@@ -26,15 +26,42 @@ WSIZE    # duplicates
 =====
 Explain in your own words the conceptual differences between 
 the benchmark and benchmarkShift methods. 
+
 Answer these questions: 
 
 (1) Why the results of these methods should be the same in 
 terms of changes made to the HashSet parameter.
 
+The objects created in both methods are the same. Thus the objects put into the HashSet have the same
+sequence and content. In the first method, WordGram methods are being created by getting words from the
+the words array using a for-loop. In the second method, a first object is created, and then later 
+objects are created based on the first object using the shiftAdd() method. 
+
 (2) What are the conceptual differences between the two
 benchmarking methods
+
+The benchmark method scans through every word in the file and stores them first in an ArrayList then
+in a String array. The WordGram objects are created by looping through the String array and get WSIZE 
+words from the source array each time. In other words, if there are 100 words in the file, the words
+array should be a String array with 100 words. The first WordGram object contains words from words[0]
+to words[9]. The second WordGram object contains words from words[1] to words[10]...and the last 
+WordGram object contains words from words[90] to words[99]. The method returns the number of the 
+WordGram objects created in total.
+
+The benchmarkShift method first created a WordGram object based on the first WSIZE words. Using the
+shiftAdd method, one additional word is pulled from the file and used to shift and create the next 
+WordGram object. The method returns the number of the WordGram objects created in total.
 
 (3) Is the total amount of memory allocated for arrays
 the same or different in the two methods? Account for
 arrays created in the methods and arrays created by
 WordGram objects. Try to be quantitative in answering.
+
+The benchmarkShift method will use less memory if WSIZE is less than the total words in the file.
+The words array created in the benchmarkShift method contains WSIZE words. 
+The words array created in the benchmark method contains all the words from the file.
+If WSIZE is less than the total words in the file, than less memory is used in the benchmarkShift 
+method to store the words array.
+
+The two methods will create the same number of objects, and since WordGram objects are immutable,
+the number of arrays created by WordGram objects in both methods are the same.
